@@ -7,9 +7,6 @@ export class Post {
   @Field(() => ID)
   id!: string;
 
-  @Field({ nullable: true })
-  title!: string | null;
-
   @Field()
   content!: string;
 

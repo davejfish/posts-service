@@ -1,4 +1,4 @@
-import { Resolver, Query } from "@nestjs/graphql";
+import { Resolver, Query, Args } from "@nestjs/graphql";
 import { Post } from "./posts.entity";
 import { PostsService } from "./posts.service";
 
@@ -11,5 +11,10 @@ export class PostsResolver {
     @Query(() => [Post])
     async getPosts(): Promise<Post[]> {
         return this.postsService.findAll();
+    }
+
+    @Query(() => [Post])
+    async getUserPosts(@Args('userId') userId: string): Promise<Post[]> {
+        return this.postsService.getUserPosts(userId);
     }
 }

@@ -17,7 +17,6 @@ datasource db {
 model post {
   id        String      @id @default(dbgenerated("gen_random_uuid()"))
   authorId  String
-  title     String?
   content   String
   createdAt DateTime    @default(now()) @db.Timestamp(6)
   updatedAt DateTime?   @updatedAt @db.Timestamp(6)

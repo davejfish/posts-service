@@ -9,6 +9,14 @@ export class PostsService {
     constructor(private readonly prismaService: PrismaService) {}
 
     async findAll(): Promise<Post[]> {
-        return await this.prismaService.post.findMany();
+        const posts = await this.prismaService.post.findMany();
+        return posts;
+    }
+
+    async getUserPosts(userId: string): Promise<Post[]> {
+        const posts = await this.prismaService.post.findMany({
+            where: { authorId: userId }
+        });
+        return posts;
     }
 }
