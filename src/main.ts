@@ -3,6 +3,11 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+  const port = process.env.PORT ?? 3000;
+  await app.listen(port);
+  
+  const url = `http://localhost:${port}`;
+  console.log(`🚀 posts-service running at ${url}`);
+  console.log(`🔎 GraphQL endpoint:      ${url}/graphql`);
 }
 bootstrap();

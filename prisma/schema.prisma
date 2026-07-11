@@ -6,8 +6,20 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  runtime      = "nodejs"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+model post {
+  id        String      @id @default(dbgenerated("gen_random_uuid()"))
+  authorId  String
+  title     String
+  content   String?
+  createdAt DateTime    @default(now()) @db.Timestamp(6)
+  updatedAt DateTime?   @updatedAt @db.Timestamp(6)
+  deletedAt DateTime?   @db.Timestamp(6)
 }
